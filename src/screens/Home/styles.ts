@@ -8,8 +8,25 @@ export const Container = styled(SafeAreaView)`
 `
 
 export const Title = styled.Text`
-font-size: 32px;
-color: ${({theme})=> theme.COLORS.GRAY_1};
-font-family: ${({theme})=>theme.FONT_FAMILY.REGULAR};
+    font-size: 32px;
+    color: ${({theme})=> theme.COLORS.GRAY_1};
+    font-family: ${({theme})=>theme.FONT_FAMILY.REGULAR};
+
+`
+
+export const HomeHeader = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 24px;
+`
+
+export const Avatar = styled.Image`
+    width: 40px;
+    height: 40px;
+    border: 2px solid ${({theme})=> theme.COLORS.GRAY_2};
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
 
 `

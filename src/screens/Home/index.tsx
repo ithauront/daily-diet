@@ -1,11 +1,16 @@
-import { Header } from 'components/Header';
-import { Container, Title } from './styles';
+import {Image} from 'react-native'
+import { Avatar, Container, HomeHeader, Title } from './styles';
+import logo from '../../../assets/Logo.png'
+
 
 
 export function Home() {
   return (
     <Container >
-      <Header info='Nova Refeição'/>
+      <HomeHeader>
+        <Image source={logo} />
+        <Avatar  source={{ uri: 'https://github.com/ithauront.png' }} />
+      </HomeHeader>
       <Title>Home</Title>
     </Container>
   );
