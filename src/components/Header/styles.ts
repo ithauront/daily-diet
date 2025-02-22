@@ -14,7 +14,7 @@ export const Title = styled.Text`
     flex: 1;
     color: ${({theme})=> theme.COLORS.GRAY_1};
     font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
-    font-size:  ${({theme})=> theme.FONT_SIZE.LG};
+    font-size:  ${({theme})=> theme.FONT_SIZE.LG}px;
 `
 
 export const BackButton = styled.TouchableOpacity`
