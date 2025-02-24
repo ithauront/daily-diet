@@ -15,8 +15,6 @@ position: relative;
 flex: 1;
 min-height: 102px;
 max-height: 102px;
-margin-top: 33px;
-margin-bottom: 40px;
 
 padding: 20px 16px;
 gap: 2px;

@@ -43,7 +43,7 @@ export const Time = styled.Text`
 
     color: ${({theme})=> theme.COLORS.GRAY_1};
     font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
-    font-size: ${({theme})=> theme.FONT_SIZE.XSM}
+    font-size: ${({theme})=> theme.FONT_SIZE.XSM}px
 `
 
 export const Separator = styled.View`
@@ -59,7 +59,7 @@ export const Item = styled.Text`
 
     color: ${({theme})=> theme.COLORS.GRAY_2};
     font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};
-    font-size: ${({theme})=> theme.FONT_SIZE.MD}
+    font-size: ${({theme})=> theme.FONT_SIZE.MD}px
 `
 
 export const StatusIndicator = styled.View<Props>`

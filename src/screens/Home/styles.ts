@@ -5,7 +5,8 @@ import styled from "styled-components/native";
 export const Container = styled(SafeAreaView)`
     flex: 1;
     background-color: ${({theme})=> theme.COLORS.GRAY_7};
-    padding: 24px
+    padding: 24px;
+    gap: 32px
 
 `
 
@@ -14,6 +15,12 @@ export const Title = styled.Text`
     color: ${({theme})=> theme.COLORS.GRAY_1};
     font-family: ${({theme})=>theme.FONT_FAMILY.REGULAR};
 
+`
+
+export const MealListDate = styled.Text`
+font-size: ${({theme})=>theme.FONT_SIZE.LG}px;
+    color: ${({theme})=> theme.COLORS.GRAY_1};
+    font-family: ${({theme})=>theme.FONT_FAMILY.BOLD};
 `
 
 export const HomeHeader = styled.View`
