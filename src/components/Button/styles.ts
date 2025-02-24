@@ -30,6 +30,6 @@ align-items: center;
 
 export const ButtonTitle = styled.Text<Props>`
 font-size: ${({theme})=> theme.FONT_SIZE.SM}px;
-color: ${({theme, type = 'PRIMARY'}) => type === 'PRIMARY' ? theme.COLORS.WHITE : theme.COLORS.GRAY_1};;
+color: ${({theme, type = 'PRIMARY'}) => type === 'PRIMARY' ? theme.COLORS.WHITE : theme.COLORS.GRAY_1};
 font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
 `
