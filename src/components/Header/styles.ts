@@ -1,13 +1,24 @@
 import { ArrowLeft } from "phosphor-react-native";
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export type HeaderColorStyleProps = 'GREEN' | 'RED'
+
+type Props = {
+    type?: HeaderColorStyleProps
+}
+
+
+export const Container = styled.View<Props>`
 width: 100%;
 height: 104px;
 flex-direction: row;
 align-items: center;
 justify-content: center;
 padding: 24px;
+background-color : ${({theme, type})=> 
+        type === 'GREEN' ? theme.COLORS.GREEN_LIGHT :
+        type === 'RED' ? theme.COLORS.RED_LIGHT :
+        theme.COLORS.GRAY_5};
 `;
 
 export const Title = styled.Text`

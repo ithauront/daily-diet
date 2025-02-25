@@ -2,12 +2,13 @@ import { BackButton, BackIcon, Container, Title } from "./styles";
 
 type Props = {
     info?:string
+    bgColor?: 'GREEN' | 'RED'
 }
 
 
-export function Header({info}:Props) {
+export function Header({info, bgColor = undefined}:Props) {
     return(
-        <Container>
+        <Container type={bgColor} >
             <BackButton>
                 <BackIcon />
             </BackButton>
