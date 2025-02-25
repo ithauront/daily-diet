@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "phosphor-react-native";
+import { ArrowLeft, ArrowUpRight } from "phosphor-react-native";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import theme from "theme";
@@ -27,13 +27,22 @@ justify-content: center;
 background-color: ${({theme, type})=> type === 'GREEN' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT}
 `
 
-export const Icon = styled(ArrowUpRight).attrs<Props>(({theme, type})=>({
+export const IconExpand = styled(ArrowUpRight).attrs<Props>(({theme, type})=>({
     color: type === 'GREEN' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
     size: 24,
 }))<Props>`
 position: absolute;
 top: 3px;
 right: 3px;
+`
+
+export const IconBack = styled(ArrowLeft).attrs<Props>(({theme, type})=>({
+    color: type === 'GREEN' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
+    size: 24,
+}))<Props>`
+position: absolute;
+top: 3px;
+left: 3px;
 `
 
 export const Title = styled.Text`
