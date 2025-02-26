@@ -5,6 +5,7 @@ import theme from "theme";
 import {useFonts, NunitoSans_400Regular, NunitoSans_700Bold} from '@expo-google-fonts/nunito-sans'
 import { Loading } from "components/Loading";
 import { Stats } from "screens/Stats";
+import { NewMeal } from "screens/NewMeal";
 
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      {fonstLoaded ?   <Stats percentage="52,48"/> : <Loading /> }
+      {fonstLoaded ?   <NewMeal />: <Loading /> }
     
     </ThemeProvider>
   );
