@@ -6,6 +6,7 @@ import {useFonts, NunitoSans_400Regular, NunitoSans_700Bold} from '@expo-google-
 import { Loading } from "components/Loading";
 import { Stats } from "screens/Stats";
 import { NewMeal } from "screens/NewMeal";
+import { MealPosted } from "screens/MealPosted";
 
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      {fonstLoaded ?   <NewMeal />: <Loading /> }
+      {fonstLoaded ?   <MealPosted onDiet={true}  />: <Loading /> }
     
     </ThemeProvider>
   );

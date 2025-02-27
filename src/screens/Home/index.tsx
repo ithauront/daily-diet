@@ -6,7 +6,6 @@ import { Plus } from 'phosphor-react-native';
 import theme from 'theme';
 import { StatsCard } from 'components/StatsCard';
 import { MealCard } from 'components/MealCard';
-import { useState } from 'react';
 
 
 
