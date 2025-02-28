@@ -57,3 +57,9 @@ color: ${({theme})=> theme.COLORS.GRAY_2};
 font-size:  ${({theme})=> theme.FONT_SIZE.SM}px;
 font-family:  ${({theme})=> theme.FONT_FAMILY.BOLD};
 `
+
+export const ButtonBox = styled.View`
+    height:50px;
+    width: 100%;
+    padding: 0;
+`

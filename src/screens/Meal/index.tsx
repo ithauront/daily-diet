@@ -1,28 +1,29 @@
     import { Header } from "components/Header";
     import { Input } from "components/Input";
-    import { Container, DateTimeInput, DateTimeInputContainer, DescriptionInput, Form, InputTitle, NameInput } from "./styles";
+    import { ButtonBox, Container, DateTimeInput, DateTimeInputContainer, DescriptionInput, Form, InputTitle, NameInput } from "./styles";
     import DateTimePicker from "@react-native-community/datetimepicker";
     import { FlatList, Platform, View } from "react-native";
     import { useState } from "react";
 import { RadioInput } from "components/RadioInput";
 import { RadioInputStyleProps } from "components/RadioInput/styles";
+import { Button } from "components/Button";
 
     type Props = {
-        info?:string
         bgColor?: 'GREEN' | 'RED'
+        isInEdit?: boolean
     }
 
 
-    export function NewMeal({ bgColor = undefined}:Props) {
+    export function Meal({ bgColor = undefined, isInEdit = false}:Props) {
         const [date, setDate] = useState(new Date());
         const [time, setTime] = useState(new Date());
         const [showDatePicker, setShowDatePicker] = useState(false);
         const [showTimePicker, setShowTimePicker] = useState(false);
         const [isOnDiet , setIsOnDiet] = useState<string | undefined>(undefined)
-
+        //TODO quando isInEdit colocar no input os values originais que vamos pegar.
         return(
             <Container type={bgColor} >
-                <Header info="Nova refeição" />
+                <Header info={isInEdit? "Editar refeição" :"Nova refeição"} />
                 <Form>
                     <NameInput>
                         <InputTitle>Nome</InputTitle>
@@ -78,6 +79,9 @@ import { RadioInputStyleProps } from "components/RadioInput/styles";
                         onPress={()=>setIsOnDiet(item)}          
                     />)}
                     horizontal />
+                    <ButtonBox>
+                    <Button title={isInEdit?'Salvar alterações': 'Cadastrar refeição'} />
+                    </ButtonBox>
                 </Form>
             </Container>
         )
