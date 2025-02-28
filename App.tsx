@@ -7,6 +7,7 @@ import { Loading } from "components/Loading";
 import { Stats } from "screens/Stats";
 import { NewMeal } from "screens/NewMeal";
 import { MealPosted } from "screens/MealPosted";
+import { MealDetails } from "screens/MealDetails";
 
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      {fonstLoaded ?   <MealPosted onDiet={true}  />: <Loading /> }
+      {fonstLoaded ?   <MealDetails onDiet={false} meal="Sanduiche" description="Sanduiche de atum com pão integral" dateAndTime="12/08/2025 às 18:00"  />: <Loading /> }
     
     </ThemeProvider>
   );
