@@ -7,20 +7,31 @@
 import { RadioInput } from "components/RadioInput";
 import { RadioInputStyleProps } from "components/RadioInput/styles";
 import { Button } from "components/Button";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-    type Props = {
+    type RouteParams = {
         bgColor?: 'GREEN' | 'RED'
         isInEdit?: boolean
     }
 
 
-    export function Meal({ bgColor = undefined, isInEdit = false}:Props) {
+    export function Meal() {
         const [date, setDate] = useState(new Date());
         const [time, setTime] = useState(new Date());
         const [showDatePicker, setShowDatePicker] = useState(false);
         const [showTimePicker, setShowTimePicker] = useState(false);
         const [isOnDiet , setIsOnDiet] = useState<string | undefined>(undefined)
+
+        const route = useRoute()
+        const { isInEdit=false, bgColor=undefined } = route.params as RouteParams
         //TODO quando isInEdit colocar no input os values originais que vamos pegar.
+        // TODO forçar usuario a escolher se esta ou não na diet.
+        const navigation= useNavigation()
+        
+        function handleMealPosted() {
+           const onDiet = isOnDiet === 'Sim'    ?   true    :   false
+            navigation.navigate('mealPosted',{onDiet})
+        }
         return(
             <Container type={bgColor} >
                 <Header info={isInEdit? "Editar refeição" :"Nova refeição"} />
@@ -80,7 +91,7 @@ import { Button } from "components/Button";
                     />)}
                     horizontal />
                     <ButtonBox>
-                    <Button title={isInEdit?'Salvar alterações': 'Cadastrar refeição'} />
+                    <Button title={isInEdit?'Salvar alterações': 'Cadastrar refeição'} onPress={()=>handleMealPosted()} />
                     </ButtonBox>
                 </Form>
             </Container>

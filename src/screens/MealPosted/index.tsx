@@ -4,12 +4,22 @@ import { Image, Text } from "react-native";
 import onDietImage from '../../../assets/onDietImage.png'
 import offDietImage from '../../../assets/offDietImage.png'
 import theme from "theme";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-type Props = {
+type RouteParams = {
     onDiet: boolean;
   };
 
-export function MealPosted({onDiet}: Props) {
+export function MealPosted() {
+
+    const route = useRoute()
+    const { onDiet } = route.params as RouteParams
+
+     const navigation = useNavigation()
+    
+        function handleGoBack(){
+            navigation.navigate('home')
+        }
 
     return(
         <Container>
@@ -25,7 +35,7 @@ export function MealPosted({onDiet}: Props) {
             </TitleContainer>
             <Image source={onDiet?onDietImage:offDietImage} />
             <ButtonContainer>
-                <Button title="Ir para pagina inicial" type="PRIMARY" />
+                <Button title="Ir para pagina inicial" type="PRIMARY" onPress={handleGoBack} />
             </ButtonContainer>
         </Container>
     )

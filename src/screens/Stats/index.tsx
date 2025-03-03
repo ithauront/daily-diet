@@ -1,13 +1,17 @@
 import { StatsCard } from 'components/StatsCard';
 import { Container, Main, Title, BoxContainer, OnDietBoxContainer} from './styles'
 import { StatsBox } from 'components/StatsBox';
+import { useRoute } from '@react-navigation/native';
 
-type Props = {
+type RouteParams = {
     percentage: string
 }
 
-export function Stats ({percentage}:Props) {
+export function Stats () {
+    const route = useRoute()
+    const { percentage } = route.params as RouteParams
     const type = Number(percentage.replace(",", ".")) >= 50 ? 'GREEN' : 'RED';
+    
     return (
         <Container type={type}>
             <StatsCard percentage={percentage} asHeader/>

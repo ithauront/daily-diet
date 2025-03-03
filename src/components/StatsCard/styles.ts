@@ -35,14 +35,18 @@ position: absolute;
 top: 3px;
 right: 3px;
 `
+export const BackButton = styled.TouchableOpacity`
+    width: 40%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+`
 
 export const IconBack = styled(ArrowLeft).attrs<Props>(({theme, type})=>({
     color: type === 'GREEN' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
     size: 24,
 }))<Props>`
-position: absolute;
-top: 3px;
-left: 3px;
+
 `
 
 export const Title = styled.Text`

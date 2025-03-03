@@ -20,7 +20,7 @@ export const Title = styled.Text`
 `
 
 export const BackButton = styled.TouchableOpacity`
-    width: 33%;
+    width: 40%;
 `
 
 export const BackIcon = styled(ArrowLeft).attrs(({theme})=>({
