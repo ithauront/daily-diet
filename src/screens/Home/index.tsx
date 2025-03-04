@@ -7,6 +7,7 @@ import theme from 'theme';
 import { StatsCard } from 'components/StatsCard';
 import { MealCard } from 'components/MealCard';
 import { useNavigation } from '@react-navigation/native';
+import { ListEmpty } from 'components/ListEmpty';
 
 
 
@@ -117,7 +118,7 @@ export function Home() {
           <MealCard time={item.time} meal={item.meal} onDiet={item.onDiet} onPress={()=>handleMealDetails(item.onDiet, `${title} às ${item.time}` , item.description,  item.meal)} />
         )}
         renderSectionFooter={() => <View style={{ height: 32 }} />}
-       
+       ListEmptyComponent={<ListEmpty message='Que tal adicionar sua primeira refeição?'/>}
         
       />
     </Container>
