@@ -8,6 +8,7 @@ import { RadioInput } from "components/RadioInput";
 import { RadioInputStyleProps } from "components/RadioInput/styles";
 import { Button } from "components/Button";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { mealCreate } from "storage/meals/mealCreate";
 
     type RouteParams = {
         bgColor?: 'GREEN' | 'RED'
@@ -18,6 +19,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
     export function Meal() {
         const [date, setDate] = useState(new Date());
         const [time, setTime] = useState(new Date());
+        const [mealName, setMealName] = useState('')
+        const [mealDescription, setMealDescription] = useState('')
         const [showDatePicker, setShowDatePicker] = useState(false);
         const [showTimePicker, setShowTimePicker] = useState(false);
         const [isOnDiet , setIsOnDiet] = useState<string | undefined>(undefined)
@@ -25,12 +28,26 @@ import { useNavigation, useRoute } from "@react-navigation/native";
         const route = useRoute()
         const { isInEdit=false, bgColor=undefined } = route.params as RouteParams
         //TODO quando isInEdit colocar no input os values originais que vamos pegar.
-        // TODO forçar usuario a escolher se esta ou não na diet.
         const navigation= useNavigation()
         
-        function handleMealPosted() {
-           const onDiet = isOnDiet === 'Sim'    ?   true    :   false
-            navigation.navigate('mealPosted',{onDiet})
+       async function handleMealPosted() {
+        if (!mealName.trim() || !mealDescription.trim() || isOnDiet === undefined) {
+            alert("Preencha todos os campos antes de salvar!")
+            return
+        }
+        const formattedDate = date.toLocaleDateString("pt-BR").replace(/\//g, "-")
+        
+           const newMeal = {
+            name: mealName,
+            description: mealDescription,
+            date: formattedDate, 
+            time: time.toTimeString().split(" ")[0],
+            isOnDiet: isOnDiet === 'Sim'    ?   true    :   false
+        }
+
+           await mealCreate(newMeal)
+
+           navigation.navigate('mealPosted',{onDiet: newMeal.isOnDiet})
         }
         return(
             <Container type={bgColor} >
@@ -38,11 +55,13 @@ import { useNavigation, useRoute } from "@react-navigation/native";
                 <Form>
                     <NameInput>
                         <InputTitle>Nome</InputTitle>
-                        <Input />
+                        <Input onChangeText={(text) => setMealName(text)}  />
                     </NameInput>
                     <DescriptionInput>
                     <InputTitle>Descrição</InputTitle>
-                    <Input multiline={true} textAlignVertical="top" />
+                    <Input multiline={true}
+                     textAlignVertical="top"
+                     onChangeText={(text) => setMealDescription(text)}  />
                     </DescriptionInput>
                     <DateTimeInputContainer>
                         <DateTimeInput>

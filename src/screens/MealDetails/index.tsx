@@ -17,12 +17,13 @@ type RouteParams = {
 }
 
 export function MealDetails() {
+    // TODO formatar a forma que a data e hora é vista.
     const [isModalVisible, setIsModalVisible] = useState(false)
     const navigation = useNavigation()
 
     
-        const route = useRoute()
-        const { onDiet, dateAndTime, description, meal } = route.params as RouteParams
+    const route = useRoute()
+    const { onDiet, dateAndTime, description, meal } = route.params as RouteParams
 
     function handleEditMeal() {
         navigation.navigate('meal', {isInEdit:true})
