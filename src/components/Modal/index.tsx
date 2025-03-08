@@ -7,9 +7,10 @@ type Props = {
     visible: boolean,
     onCancel: ()=>void,
     onConfirm: ()=>void
+    isEdit?: boolean
 }
 
-export function CustomModal({ visible, onCancel, onConfirm }: Props) {
+export function CustomModal({ visible, onCancel, onConfirm, isEdit=false }: Props) {
     
   return (
     <RNModal 
@@ -20,10 +21,10 @@ export function CustomModal({ visible, onCancel, onConfirm }: Props) {
     >
         <ModalOverlay>
       <Container>
-        <Title>Deseja realmente excluir o registro da refeição?</Title>
+        <Title>{isEdit?'Deseja Editar a refeição para os novos valores fornacidos?':'Deseja realmente excluir o registro da refeição?'}</Title>
         <ButtonContainer>
           <Button type='SECONDARY' title="Cancelar" onPress={onCancel} />
-          <Button title="Sim, excluir" onPress={onConfirm} />
+          <Button title={isEdit?'Sim, editar':"Sim, excluir"} onPress={onConfirm} />
         </ButtonContainer>
       </Container>
       </ModalOverlay>
