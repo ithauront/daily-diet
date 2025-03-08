@@ -5,6 +5,9 @@ export declare global{
             meal: {
                 bgColor?: 'GREEN' | 'RED'
                 isInEdit?: boolean
+                mealNameParam?: string
+                dateParam?: string
+                timeParam?: string
             }
             mealPosted: {
                 onDiet: boolean
@@ -13,7 +16,8 @@ export declare global{
                 onDiet: boolean
                 meal: string
                 description: string
-                dateAndTime: string
+                date: string
+                time: string
             }
             stats: {
                 percentage: string
