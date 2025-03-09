@@ -38,7 +38,7 @@ export const TimeTitleContainer = styled.View`
 `
 
 export const Time = styled.Text`
-    width: 32px;
+    width: 34px;
     height: 16px;
 
     color: ${({theme})=> theme.COLORS.GRAY_1};
