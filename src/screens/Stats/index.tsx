@@ -4,6 +4,7 @@ import { StatsBox } from 'components/StatsBox';
 import { useRoute } from '@react-navigation/native';
 import { mealsGetAll } from 'storage/meals/mealsGetAll';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 
 type RouteParams = {
     percentage: string
@@ -20,8 +21,8 @@ export function Stats () {
 
     function calculateDietStreak (meals: {isOnDiet:boolean, date: string, time:string}[]) {
         const sortedMeals = meals.sort((a,b)=>{
-            const dateTimeA = new Date(`${a.date}T${a.time}`).getTime()
-            const dateTimeB = new Date(`${b.date}T${b.time}`).getTime()
+            const dateTimeA = dayjs(`${a.date}T${a.time}`).valueOf();
+            const dateTimeB = dayjs(`${b.date}T${b.time}`).valueOf();
             return dateTimeB - dateTimeA
         })
         let currentStreak = 0

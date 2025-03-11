@@ -9,6 +9,7 @@ import { useState } from "react";
 import { CustomModal } from "components/Modal";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { mealDeleteOne } from "storage/meals/mealDelete";
+import dayjs from "dayjs";
 
 type RouteParams = {
     onDiet: boolean
@@ -25,7 +26,8 @@ export function MealDetails() {
     
     const route = useRoute()
     const { onDiet, date, time, description, meal } = route.params as RouteParams
-    const formattedDate = new Date(date).toLocaleDateString("pt-BR")
+    
+    const formattedDate = dayjs(date).format("DD/MM/YYYY");
 
     function handleEditMeal() {
         navigation.navigate('meal', {isInEdit:true, mealNameParam:meal, dateParam:date, timeParam: time})

@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ListEmpty } from 'components/ListEmpty';
 import { mealsGetAll } from 'storage/meals/mealsGetAll';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 //TODO organizar um pouco como o codigo esta sendo apresentado, colocar tipos d estrutura juntas, ajustar imports etc. em todos arquivos
 type MealProps = {
   name: string;
@@ -31,15 +32,16 @@ export function Home() {
       const mealsOnDiet = meals.filter(meals => meals.isOnDiet === true).length
       const percentageOfMealsOnDiet = totalMeals > 0 
             ? (mealsOnDiet / totalMeals) * 100
-            : 0
+            : 0 
       const formattedPercentage = percentageOfMealsOnDiet === 100 || percentageOfMealsOnDiet === 0 
                 ? Math.round(percentageOfMealsOnDiet).toString()
                 : percentageOfMealsOnDiet.toFixed(2);
+      
       setPercentage(formattedPercentage)
 
       const sortedMeals = meals.sort((a, b) => {
-        const dateTimeA = new Date(`${a.date}T${a.time}`).getTime();
-        const dateTimeB = new Date(`${b.date}T${b.time}`).getTime();
+        const dateTimeA = dayjs(`${a.date}T${a.time}`).valueOf();
+        const dateTimeB = dayjs(`${b.date}T${b.time}`).valueOf();
         return dateTimeB - dateTimeA;
     });
 
@@ -52,7 +54,7 @@ export function Home() {
       }, {} as Record<string, MealProps[]>)
 
       const formatedMeals = Object.keys(groupedMeals)
-      .sort((a,b)=> new Date(b).getTime() - new Date(a).getTime())
+      .sort((a,b)=> dayjs(b).valueOf() - dayjs(a).valueOf())
       .map((date)=>({
         title: date,
         data: groupedMeals[date]
@@ -103,13 +105,16 @@ export function Home() {
         sections={mealsByDate}
         keyExtractor={(item, index) => item.name + index}
         renderSectionHeader={({section: {title}}) => (
-          <MealListDate>{new Date(title).toLocaleDateString("pt-BR")
-            .replaceAll('/','.')
-            .replace(/\d{4}$/, match => match.slice(-2))}
+          <MealListDate>{dayjs(title).format("DD.MM.YY")}
             </MealListDate>
         )}
         renderItem={({item , section: {title}})=>(
-          <MealCard time={item.time} meal={item.name} onDiet={item.isOnDiet} onPress={()=>handleMealDetails(item.isOnDiet, title, item.time , item.description,  item.name)} />
+          <MealCard
+          time={item.time}
+          meal={item.name}
+          onDiet={item.isOnDiet}
+          onPress={()=>handleMealDetails(item.isOnDiet, title, item.time , item.description,  item.name)}
+          />
         )}
         renderSectionFooter={() => <View style={{ height: 32 }} />}
        ListEmptyComponent={<ListEmpty message='Que tal adicionar sua primeira refeição?'/>}
