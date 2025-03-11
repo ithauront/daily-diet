@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ListEmpty } from 'components/ListEmpty';
 import { mealsGetAll } from 'storage/meals/mealsGetAll';
 import { useEffect, useState } from 'react';
-
+//TODO organizar um pouco como o codigo esta sendo apresentado, colocar tipos d estrutura juntas, ajustar imports etc. em todos arquivos
 type MealProps = {
   name: string;
   description: string;
@@ -21,13 +21,29 @@ type MealProps = {
 
 export function Home() {
   const [mealsByDate, setMealsByDate] = useState<{title:string, data:MealProps[]}[]>([])
+  const [percentage, setPercentage] = useState('')
 
   async function getMeals() {
 
     try {
       const meals = await mealsGetAll()
+      const totalMeals = meals.length
+      const mealsOnDiet = meals.filter(meals => meals.isOnDiet === true).length
+      const percentageOfMealsOnDiet = totalMeals > 0 
+            ? (mealsOnDiet / totalMeals) * 100
+            : 0
+      const formattedPercentage = percentageOfMealsOnDiet === 100 || percentageOfMealsOnDiet === 0 
+                ? Math.round(percentageOfMealsOnDiet).toString()
+                : percentageOfMealsOnDiet.toFixed(2);
+      setPercentage(formattedPercentage)
 
-      const groupedMeals = meals.reduce((acc, meal)=>{
+      const sortedMeals = meals.sort((a, b) => {
+        const dateTimeA = new Date(`${a.date}T${a.time}`).getTime();
+        const dateTimeB = new Date(`${b.date}T${b.time}`).getTime();
+        return dateTimeB - dateTimeA;
+    });
+
+      const groupedMeals = sortedMeals.reduce((acc, meal)=>{
         if(!acc[meal.date]) {
           acc[meal.date] = []
         }
@@ -53,8 +69,8 @@ export function Home() {
   const navigation= useNavigation()
 
 
-  function handleMealDetails (onDiet: boolean, dateAndTime: string, description: string, meal:string) {
-     navigation.navigate('mealDetails', { dateAndTime, description, meal, onDiet})
+  function handleMealDetails (onDiet: boolean, date: string, time: string, description: string, meal:string) {
+     navigation.navigate('mealDetails', { date, time, description, meal, onDiet})
   }
 
   function handleNewMeal () {
@@ -63,7 +79,7 @@ export function Home() {
 
   function handleStats (percentage: string) {
     navigation.navigate('stats', {percentage})
-  } //TODO fazer o calculo da percentage e guardar em um estado.
+  }
 
   useEffect(()=>{
     getMeals()
@@ -75,7 +91,7 @@ export function Home() {
         <Image source={logo} />
         <Avatar  source={{ uri: 'https://github.com/ithauront.png' }} />
       </HomeHeader>
-      <StatsCard percentage='98,03' onPress={()=>handleStats('98,03')} />
+      <StatsCard percentage={percentage} onPress={()=>handleStats(percentage)} />
       <View style={{gap: 8, height: 79}}>
       <Title>Refeições</Title>
       <Button title='Nova refeição' onPress={()=>handleNewMeal()}>
@@ -87,10 +103,13 @@ export function Home() {
         sections={mealsByDate}
         keyExtractor={(item, index) => item.name + index}
         renderSectionHeader={({section: {title}}) => (
-          <MealListDate>{title.replaceAll('-','.')}</MealListDate>
+          <MealListDate>{new Date(title).toLocaleDateString("pt-BR")
+            .replaceAll('/','.')
+            .replace(/\d{4}$/, match => match.slice(-2))}
+            </MealListDate>
         )}
         renderItem={({item , section: {title}})=>(
-          <MealCard time={item.time} meal={item.name} onDiet={item.isOnDiet} onPress={()=>handleMealDetails(item.isOnDiet, `${title} às ${item.time}` , item.description,  item.name)} />
+          <MealCard time={item.time} meal={item.name} onDiet={item.isOnDiet} onPress={()=>handleMealDetails(item.isOnDiet, title, item.time , item.description,  item.name)} />
         )}
         renderSectionFooter={() => <View style={{ height: 32 }} />}
        ListEmptyComponent={<ListEmpty message='Que tal adicionar sua primeira refeição?'/>}
