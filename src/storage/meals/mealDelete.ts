@@ -3,6 +3,7 @@ import { mealsGetAll } from "./mealsGetAll";
 import { MEAL_COLLECTION } from "storage/storageConfig";
 
 export async function mealDeleteOne(mealName: string, mealDate: string, mealTime: string) {
+    
     try {
          const storagedMeals = await mealsGetAll();
          const filtred = storagedMeals.filter(meal => !(meal.name === mealName && meal.date === mealDate && meal.time === mealTime))

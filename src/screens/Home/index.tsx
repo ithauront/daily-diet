@@ -11,7 +11,7 @@ import { ListEmpty } from 'components/ListEmpty';
 import { mealsGetAll } from 'storage/meals/mealsGetAll';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-//TODO organizar um pouco como o codigo esta sendo apresentado, colocar tipos d estrutura juntas, ajustar imports etc. em todos arquivos
+
 type MealProps = {
   name: string;
   description: string;
@@ -23,6 +23,8 @@ type MealProps = {
 export function Home() {
   const [mealsByDate, setMealsByDate] = useState<{title:string, data:MealProps[]}[]>([])
   const [percentage, setPercentage] = useState('')
+
+  const navigation= useNavigation()
 
   async function getMeals() {
 
@@ -68,9 +70,6 @@ export function Home() {
     
   }
 
-  const navigation= useNavigation()
-
-
   function handleMealDetails (onDiet: boolean, date: string, time: string, description: string, meal:string) {
      navigation.navigate('mealDetails', { date, time, description, meal, onDiet})
   }
@@ -95,10 +94,10 @@ export function Home() {
       </HomeHeader>
       <StatsCard percentage={percentage} onPress={()=>handleStats(percentage)} />
       <View style={{gap: 8, height: 79}}>
-      <Title>Refeições</Title>
-      <Button title='Nova refeição' onPress={()=>handleNewMeal()}>
-        <Plus color={theme.COLORS.WHITE} size={18} /> 
-      </Button>
+        <Title>Refeições</Title>
+        <Button title='Nova refeição' onPress={()=>handleNewMeal()}>
+          <Plus color={theme.COLORS.WHITE} size={18} /> 
+        </Button>
       </View>
       <SectionList 
         showsVerticalScrollIndicator={false}
@@ -123,4 +122,3 @@ export function Home() {
     </Container>
   );
 }
-

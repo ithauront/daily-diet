@@ -15,11 +15,11 @@ export function MealPosted() {
     const route = useRoute()
     const { onDiet } = route.params as RouteParams
 
-     const navigation = useNavigation()
+    const navigation = useNavigation()
     
-        function handleGoBack(){
-            navigation.navigate('home')
-        }
+    function handleGoBack(){
+        navigation.navigate('home')
+    }
 
     return(
         <Container>
@@ -38,6 +38,5 @@ export function MealPosted() {
                 <Button title="Ir para pagina inicial" type="PRIMARY" onPress={handleGoBack} />
             </ButtonContainer>
         </Container>
-    )
-    
+    ) 
 }

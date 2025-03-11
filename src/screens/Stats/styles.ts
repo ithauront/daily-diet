@@ -7,7 +7,6 @@ type Props = {
     type: StatsColorStyleProps
 }
 
-
 export const Container = styled(SafeAreaView)<Props>`
     flex: 1;
     background-color: ${({theme, type})=> type === 'GREEN' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};

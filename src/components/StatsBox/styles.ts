@@ -9,12 +9,13 @@ type Props = {
 
 
 export const Container = styled.View<Props>`
-   flex: 1;
+    flex: 1;
     max-height: 107px;
     min-height: 107px;
 
     align-items: center;
     justify-content: center; 
+    
     background-color : ${({theme, type})=> 
         type === 'GREEN' ? theme.COLORS.GREEN_LIGHT :
         type === 'RED' ? theme.COLORS.RED_LIGHT :

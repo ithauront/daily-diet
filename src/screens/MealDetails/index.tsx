@@ -21,26 +21,16 @@ type RouteParams = {
 
 export function MealDetails() {
     const [isModalVisible, setIsModalVisible] = useState(false)
-    const navigation = useNavigation()
-
-    
+        
     const route = useRoute()
     const { onDiet, date, time, description, meal } = route.params as RouteParams
+
+    const navigation = useNavigation()
     
     const formattedDate = dayjs(date).format("DD/MM/YYYY");
 
     function handleEditMeal() {
         navigation.navigate('meal', {isInEdit:true, mealNameParam:meal, dateParam:date, timeParam: time})
-    }
-
-    async function mealRemove() {
-        try {
-            await mealDeleteOne(meal,date,time)
-            navigation.navigate('home')
-        } catch(error) {
-            Alert.alert('Erro ao remover', 'Ocorreu um erro ao tentar remover a refeição.')
-        }
-         
     }
 
     function handleDeleteMeal () {
@@ -49,6 +39,15 @@ export function MealDetails() {
         } catch(error) {
             console.log(error)
         }
+    }
+
+    async function mealRemove() {
+        try {
+            await mealDeleteOne(meal,date,time)
+            navigation.navigate('home')
+        } catch(error) {
+            Alert.alert('Erro ao remover', 'Ocorreu um erro ao tentar remover a refeição.')
+        }  
     }
 
     return(

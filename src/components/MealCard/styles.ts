@@ -1,7 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
-
 export type MealCardStyleProps = 'GREEN' | 'RED'
 
 type Props = {
@@ -10,21 +9,16 @@ type Props = {
 
 export const Container = styled(TouchableOpacity)`
 flex: 1;
-flex-direction: row;
+flex-direction: row;align-items: center;
+justify-content: space-between;
+
 min-height: 49px;
 max-height: 49px;
 margin-top: 8px;
-
 padding: 14px 16px 12px 14px;
 
 border-radius: 6px;
-
-align-items: center;
-justify-content: space-between;
-
 border: 1px solid ${({theme})=>theme.COLORS.GRAY_5}
-
-
 `
 
 export const TimeTitleContainer = styled.View`
@@ -33,8 +27,8 @@ export const TimeTitleContainer = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
 
+    gap: 12px;
 `
 
 export const Time = styled.Text`
@@ -69,6 +63,4 @@ height: 14px;
 border-radius: 7px;
 
 background-color: ${({ theme, type }) => type === 'GREEN' ? theme.COLORS.GREEN_MID : theme.COLORS.RED_MID};
-
-
 `

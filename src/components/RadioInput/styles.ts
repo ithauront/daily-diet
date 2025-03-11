@@ -8,9 +8,19 @@ type Props = {
     isActive?: boolean
 }
 
-
 export const Container = styled(TouchableOpacity)<Props>`
-    background-color: ${({theme, type, isActive}) => 
+     flex: 1;
+
+     max-height: 50px;
+     min-height: 50px;
+     border-radius: 6px;
+     width: 160px;
+
+
+     align-items: center;
+     justify-content: center;
+
+     background-color: ${({theme, type, isActive}) => 
      type === 'Sim' && isActive  ? theme.COLORS.GREEN_LIGHT :
      type === 'Não' && isActive ? theme.COLORS.RED_LIGHT :
      theme.COLORS.GRAY_5
@@ -20,14 +30,6 @@ export const Container = styled(TouchableOpacity)<Props>`
      type === 'Não' && isActive ? theme.COLORS.RED_DARK :
      theme.COLORS.GRAY_5
      };
-     max-height: 50px;
-     min-height: 50px;
-     border-radius: 6px;
-     width: 160px;
-     flex: 1;
-
-     align-items: center;
-     justify-content: center
 `
 
 export const TitleStatusContainer = styled.View`
@@ -44,11 +46,8 @@ export const Title = styled.Text`
 `
 
 export const StatusIndicator = styled.View<Props>`
-width: 8px;
-height: 8px;
-
-border-radius: 4px;
-
-background-color: ${({ theme, type }) => type === 'Sim' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
-
+     width: 8px;
+     height: 8px;
+     border-radius: 4px;
+     background-color: ${({ theme, type }) => type === 'Sim' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
 `

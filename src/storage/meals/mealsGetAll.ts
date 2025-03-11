@@ -18,6 +18,5 @@ export async function mealsGetAll(): Promise<Props[]> {
       return meals
     } catch(error) {
         throw error
-    }
-    
+    }  
 }

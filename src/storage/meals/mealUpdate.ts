@@ -31,6 +31,5 @@ export async function mealUpdate({oldDate, oldName, oldTime, meal}:Props) {
 
     } catch(error) {
         throw error
-    }
-    
+    }  
 }

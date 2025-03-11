@@ -55,6 +55,7 @@ export function Stats () {
     useEffect(()=>{
         calculateStats()
     }, [])
+
     return (
         <Container type={type}>
             <StatsCard percentage={percentage} asHeader/>
@@ -67,8 +68,7 @@ export function Stats () {
                         <StatsBox quantity={totalOnDiet} subject='Refeições dentro da dieta' type='GREEN' />
                         <StatsBox quantity={totalOffDiet} subject='Refeições fora da dieta' type='RED' />
                     </OnDietBoxContainer>
-                </ BoxContainer>
-                
+                </ BoxContainer>  
             </Main>
         </Container>
     )

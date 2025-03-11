@@ -22,13 +22,11 @@ export const Title = styled.Text`
     font-size: ${({theme})=>theme.FONT_SIZE.LG}px;
     font-family: ${({theme})=>theme.FONT_FAMILY.BOLD};
     color: ${({theme})=>theme.COLORS.GRAY_2};
-
 `
 
 export const ButtonContainer = styled.View`
     width: 100%;
     height: 50px;
     flex-direction: row;
-
     gap: 12px
 `

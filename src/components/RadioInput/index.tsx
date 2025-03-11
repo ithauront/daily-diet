@@ -8,7 +8,6 @@ type Props = TouchableOpacityProps & {
 }
 
 export function RadioInput({title, type, isActive = false, ...rest }:Props) {
-    
     return (
         <Container type={type} isActive={isActive} {...rest}>
             <TitleStatusContainer>

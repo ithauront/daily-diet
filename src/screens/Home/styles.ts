@@ -1,24 +1,21 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
-
 export const Container = styled(SafeAreaView)`
     flex: 1;
     background-color: ${({theme})=> theme.COLORS.GRAY_7};
     padding: 24px;
     gap: 32px
-
 `
 
 export const Title = styled.Text`
     font-size: ${({theme})=>theme.FONT_SIZE.MD}px;
     color: ${({theme})=> theme.COLORS.GRAY_1};
     font-family: ${({theme})=>theme.FONT_FAMILY.REGULAR};
-
 `
 
 export const MealListDate = styled.Text`
-font-size: ${({theme})=>theme.FONT_SIZE.LG}px;
+    font-size: ${({theme})=>theme.FONT_SIZE.LG}px;
     color: ${({theme})=> theme.COLORS.GRAY_1};
     font-family: ${({theme})=>theme.FONT_FAMILY.BOLD};
 `
@@ -37,5 +34,4 @@ export const Avatar = styled.Image`
     border-radius: 20px;
     align-items: center;
     justify-content: center;
-
 `

@@ -19,6 +19,5 @@ export async function mealCreate(newMeal: Props) {
         await AsyncStorage.setItem(MEAL_COLLECTION, storage)
     } catch(error) {
         throw error
-    }
-    
+    }   
 }

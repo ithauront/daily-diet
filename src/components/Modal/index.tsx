@@ -11,7 +11,6 @@ type Props = {
 }
 
 export function CustomModal({ visible, onCancel, onConfirm, isEdit=false }: Props) {
-    
   return (
     <RNModal 
       visible={visible} 

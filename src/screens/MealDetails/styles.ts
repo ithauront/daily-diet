@@ -7,15 +7,12 @@ type Props = {
     type?: StatsColorStyleProps
 }
 
-
 export const Container = styled(SafeAreaView)<Props>`
     flex: 1;
     background-color: ${({theme, type})=>
          type === 'GREEN' ? theme.COLORS.GREEN_LIGHT : 
          theme.COLORS.RED_LIGHT };
-  
 `
-
 
 export const Main = styled.View`
     flex: 1;
@@ -24,12 +21,10 @@ export const Main = styled.View`
     padding: 40px 24px;
     border-radius: 20px;
 `
-
 export const DetailsBox = styled.View`
     width: 100%;
     gap: 24px;
     padding: 0;
-
 `
 
 export const ButtonBox = styled.View`
@@ -37,8 +32,6 @@ export const ButtonBox = styled.View`
     width: 100%;
     gap: 8px;
     padding: 0;
-   
-
 `
 
 export const Title = styled.Text`
@@ -51,7 +44,6 @@ export const SubTitle = styled.Text`
     font-size:  ${({theme})=> theme.FONT_SIZE.SM}px;
     font-family:  ${({theme})=> theme.FONT_FAMILY.BOLD};
 `
-
 
 export const Text = styled.Text`
     color: ${({theme})=> theme.COLORS.GRAY_2};

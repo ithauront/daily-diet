@@ -7,7 +7,6 @@ type Props = {
     type: onDiet
 }
 
-
 export const Container = styled(SafeAreaView)`
     flex: 1;
     background-color: ${({theme})=> theme.COLORS.GRAY_7};
@@ -16,8 +15,6 @@ export const Container = styled(SafeAreaView)`
 
     align-items: center;
     justify-content: center;
-
-
 `
 
 export const TitleContainer = styled.View`

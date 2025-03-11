@@ -14,16 +14,15 @@ import { mealUpdate } from "storage/meals/mealUpdate"
 import { CustomModal } from "components/Modal"
 import dayjs from "dayjs"
 
-    type RouteParams = {
-        bgColor?: 'GREEN' | 'RED'
-        isInEdit?: boolean
-        mealNameParam?: string
-        dateParam?: string
-        timeParam?: string
-    }
+type RouteParams = {
+    bgColor?: 'GREEN' | 'RED'
+    isInEdit?: boolean
+    mealNameParam?: string
+    dateParam?: string
+    timeParam?: string
+}
 
-    export function Meal() {
-        //TODO ao editar a data ela esta indo para um dia anterior ao dia colocado. provavelmente devido a fsohorario
+export function Meal() {
         const [date, setDate] = useState(new Date());
         const [time, setTime] = useState(new Date());
         const [mealName, setMealName] = useState('')
@@ -35,9 +34,36 @@ import dayjs from "dayjs"
 
         const route = useRoute()
         const { isInEdit=false, bgColor=undefined, mealNameParam, dateParam, timeParam } = route.params as RouteParams
+        
         const navigation= useNavigation()
 
-        
+        function updateMeal () {
+            try{
+              setIsModalVisible(true)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+
+        async function updateMealToEdit() {
+            if (isInEdit && mealNameParam && dateParam && timeParam) {
+                const mealToEdit = await mealsGetOne(mealNameParam, dateParam, timeParam)
+    
+                if (!mealToEdit) {
+                    Alert.alert('Informações incompletas', 'Não foi possível encontrar a refeição que você quer editar, por favor tente novamente.')
+                    navigation.navigate('home')
+                    return
+                }
+    
+                setMealName(mealToEdit.name ?? '')
+                setIsOnDiet(mealToEdit.isOnDiet ? 'Sim' : 'Não')
+                setDate(mealToEdit.date ? dayjs(mealToEdit.date).toDate() : new Date())
+                setMealDescription(mealToEdit.description ?? '')
+                setTime(mealToEdit.time ? dayjs(`${mealToEdit.date}${mealToEdit.time}`).toDate() : new Date());
+ 
+            }
+        }
+
        async function handleMealPosted() {
         if (!mealName.trim() || !mealDescription.trim() || isOnDiet === undefined) {
             alert("Preencha todos os campos antes de salvar!")
@@ -60,14 +86,6 @@ import dayjs from "dayjs"
            navigation.navigate('mealPosted',{onDiet: newMeal.isOnDiet})
         }
 
-        function updateMeal () {
-            try{
-              setIsModalVisible(true)
-            } catch(error) {
-                console.log(error)
-            }
-        }
-      
         async function handleUpdateMeal() {
             if (!mealNameParam || !dateParam || !timeParam) {
                 Alert.alert("Erro", "Não foi possível encontrar a refeição para atualizar.");
@@ -89,26 +107,7 @@ import dayjs from "dayjs"
                 oldDate:dateParam!,oldName: mealNameParam!, oldTime:timeParam!, meal: updatedMeal})
             navigation.navigate('home')
             
-        }
-
-        async function updateMealToEdit() {
-            if (isInEdit && mealNameParam && dateParam && timeParam) {
-                const mealToEdit = await mealsGetOne(mealNameParam, dateParam, timeParam)
-    
-                if (!mealToEdit) {
-                    Alert.alert('Informações incompletas', 'Não foi possível encontrar a refeição que você quer editar, por favor tente novamente.')
-                    navigation.navigate('home')
-                    return
-                }
-    
-                setMealName(mealToEdit.name ?? '')
-                setIsOnDiet(mealToEdit.isOnDiet ? 'Sim' : 'Não')
-                setDate(mealToEdit.date ? dayjs(mealToEdit.date).toDate() : new Date())
-                setMealDescription(mealToEdit.description ?? '')
-                setTime(mealToEdit.time ? dayjs(`${mealToEdit.date}${mealToEdit.time}`).toDate() : new Date());
- 
-            }
-        }
+        } 
 
         useEffect(()=>{
             updateMealToEdit()
@@ -184,4 +183,4 @@ import dayjs from "dayjs"
                 </Form>
             </Container>
         )
-    }
+}

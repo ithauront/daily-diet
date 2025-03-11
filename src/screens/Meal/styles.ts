@@ -6,12 +6,10 @@ type Props = {
     type?: StatsColorStyleProps
 }
 
-
 export const Container = styled(SafeAreaView)<Props>`
     flex: 1;
     background-color: ${({theme})=>
          theme.COLORS.GRAY_5};
-  
 `
 
 
@@ -25,34 +23,34 @@ export const Form = styled.View`
 `
 
 export const NameInput = styled.View`
-height: 70px;
-width: 100%;
-gap: 4px;
+    height: 70px;
+    width: 100%;
+    gap: 4px;
 `
 
 export const DescriptionInput = styled.View`
-height: 142px;
-width: 100%;
-gap: 4px;
+    height: 142px;
+    width: 100%;
+    gap: 4px;
 `
 
 export const DateTimeInputContainer = styled.View`
-height: 70px;
-width: 100%;
-gap: 20px;
-flex-direction: row
+    height: 70px;
+    width: 100%;
+    gap: 20px;
+    flex-direction: row
 `
 
 export const DateTimeInput = styled.View`
-height: 70px;
-width: 47%;
-gap: 4px;
+    height: 70px;
+    width: 47%;
+    gap: 4px;
 `
 
 export const InputTitle = styled.Text`
-color: ${({theme})=> theme.COLORS.GRAY_2};
-font-size:  ${({theme})=> theme.FONT_SIZE.SM}px;
-font-family:  ${({theme})=> theme.FONT_FAMILY.BOLD};
+    color: ${({theme})=> theme.COLORS.GRAY_2};
+    font-size:  ${({theme})=> theme.FONT_SIZE.SM}px;
+    font-family:  ${({theme})=> theme.FONT_FAMILY.BOLD};
 `
 
 export const ButtonBox = styled.View`

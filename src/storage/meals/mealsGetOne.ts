@@ -19,5 +19,4 @@ export async function mealsGetOne(mealName: string, mealDate: string, mealTime: 
     } catch(error) {
         throw error
     }
-    
 }

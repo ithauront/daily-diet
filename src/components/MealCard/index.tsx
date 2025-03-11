@@ -1,4 +1,3 @@
-
 import { TouchableOpacityProps } from "react-native";
 import { Container, Item, Separator, StatusIndicator, Time, TimeTitleContainer } from "./styles";
 
@@ -18,7 +17,6 @@ export function MealCard({time, meal, onDiet, onPress}:Props) {
                 <Item>{meal}</Item>
             </TimeTitleContainer>
             <StatusIndicator type={statusType}/>
-
         </Container>
     )
 }

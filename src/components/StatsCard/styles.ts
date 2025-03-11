@@ -1,7 +1,6 @@
 import { ArrowLeft, ArrowUpRight } from "phosphor-react-native";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import theme from "theme";
 
 export type CardColorStyleProps = 'GREEN' | 'RED'
 
@@ -11,29 +10,29 @@ type Props = {
 
 
 export const Container = styled(TouchableOpacity)<Props>`
-position: relative;
-flex: 1;
-min-height: 102px;
-max-height: 102px;
+    position: relative;
+    flex: 1;
 
-padding: 20px 16px;
-gap: 2px;
+    min-height: 102px;
+    max-height: 102px;
+    padding: 20px 16px;
+    gap: 2px;
 
-border-radius: 8px;
+    border-radius: 8px;
 
-align-items: center;
-justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-background-color: ${({theme, type})=> type === 'GREEN' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT}
+    background-color: ${({theme, type})=> type === 'GREEN' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT}
 `
 
 export const IconExpand = styled(ArrowUpRight).attrs<Props>(({theme, type})=>({
     color: type === 'GREEN' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
     size: 24,
 }))<Props>`
-position: absolute;
-top: 3px;
-right: 3px;
+    position: absolute;
+    top: 3px;
+    right: 3px;
 `
 export const BackButton = styled.TouchableOpacity`
     width: 40%;

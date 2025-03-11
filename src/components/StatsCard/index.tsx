@@ -1,19 +1,21 @@
 import { TouchableOpacityProps } from "react-native"
-import { CardColorStyleProps, Container, IconExpand, IconBack, SubTitle, Title, BackButton } from "./styles"
+import { Container, IconExpand, IconBack, SubTitle, Title, BackButton } from "./styles"
 import { useNavigation } from "@react-navigation/native"
 
-    type Props = TouchableOpacityProps & {
+type Props = TouchableOpacityProps & {
         children?: React.ReactNode
         percentage: string
         asHeader? : boolean
     }
 
 export function StatsCard({ percentage, asHeader=false, ...rest}:Props){
-    const navigation = useNavigation()
+    const type = Number(percentage.replace(",", ".")) >= 50 ? 'GREEN' : 'RED';
+    const navigation = useNavigation() 
+
     function handleGoBack(){
             navigation.navigate('home')
         }
-        const type = Number(percentage.replace(",", ".")) >= 50 ? 'GREEN' : 'RED';
+        
     return(
         <Container type={type} {...rest}>
             {asHeader?
