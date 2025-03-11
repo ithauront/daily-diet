@@ -2,7 +2,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
 export type StatsColorStyleProps = 'GREEN' | 'RED'
-
 type Props = {
     type?: StatsColorStyleProps
 }
@@ -10,9 +9,7 @@ type Props = {
 
 export const Container = styled(SafeAreaView)<Props>`
     flex: 1;
-    background-color: ${({theme, type})=>
-         type === 'GREEN' ? theme.COLORS.GREEN_LIGHT : 
-         type === 'RED' ?theme.COLORS.RED_LIGHT : 
+    background-color: ${({theme})=>
          theme.COLORS.GRAY_5};
   
 `
