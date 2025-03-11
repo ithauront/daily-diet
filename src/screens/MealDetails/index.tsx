@@ -8,30 +8,37 @@ import theme from "theme";
 import { useState } from "react";
 import { CustomModal } from "components/Modal";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { mealDeleteOne } from "storage/meals/mealDelete";
 
 type RouteParams = {
     onDiet: boolean
     meal: string
     description: string
-    dateAndTime: string
+    date: string
+    time: string
 }
 
 export function MealDetails() {
-    // TODO formatar a forma que a data e hora é vista.
     const [isModalVisible, setIsModalVisible] = useState(false)
     const navigation = useNavigation()
 
     
     const route = useRoute()
-    const { onDiet, dateAndTime, description, meal } = route.params as RouteParams
+    const { onDiet, date, time, description, meal } = route.params as RouteParams
+    const formattedDate = new Date(date).toLocaleDateString("pt-BR")
 
     function handleEditMeal() {
-        navigation.navigate('meal', {isInEdit:true})
+        navigation.navigate('meal', {isInEdit:true, mealNameParam:meal, dateParam:date, timeParam: time})
     }
 
-    function mealRemove() {
-        console.log('refeição removida') //TODO fazer a real função para remover do storage. dentro de um try catch
-         navigation.navigate('home')
+    async function mealRemove() {
+        try {
+            await mealDeleteOne(meal,date,time)
+            navigation.navigate('home')
+        } catch(error) {
+            Alert.alert('Erro ao remover', 'Ocorreu um erro ao tentar remover a refeição.')
+        }
+         
     }
 
     function handleDeleteMeal () {
@@ -54,7 +61,7 @@ export function MealDetails() {
                     </View>
                     <View style={{gap:8}}>
                         <SubTitle>Data e hora</SubTitle>
-                        <Text>{dateAndTime}</Text>
+                        <Text>{formattedDate} às {time}</Text>
                     </View>
                     <Badge onDiet={onDiet} />
                 </DetailsBox>
